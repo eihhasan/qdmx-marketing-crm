@@ -27,7 +27,7 @@ import { MoreHorizontal, Calendar, DollarSign, Plus } from 'lucide-react';
 
 const STAGES: DealStage[] = [
   'New Lead',
-  'Contacted',
+  'AI Nurturing',
   'Demo Scheduled',
   'Proposal Sent',
   'Negotiation',
@@ -44,7 +44,7 @@ function SortableItem({ lead }: { lead: Lead }) {
     transition,
     isDragging,
   } = useSortable({ id: lead.id, data: { type: 'Lead', lead } });
-  
+
   const { setSelectedLeadId } = useCRMStore();
 
   const style = {
@@ -75,8 +75,8 @@ function SortableItem({ lead }: { lead: Lead }) {
         <span className={clsx(
           "text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wide",
           lead.priority === 'High' ? "bg-rose-50 text-rose-700" :
-          lead.priority === 'Medium' ? "bg-amber-50 text-amber-700" :
-          "bg-zinc-100 text-zinc-600"
+            lead.priority === 'Medium' ? "bg-amber-50 text-amber-700" :
+              "bg-zinc-100 text-zinc-600"
         )}>
           {lead.priority}
         </span>
@@ -84,20 +84,20 @@ function SortableItem({ lead }: { lead: Lead }) {
           <MoreHorizontal className="w-4 h-4" />
         </button>
       </div>
-      
+
       <h4 className="font-semibold text-zinc-900 text-sm mb-0.5">{lead.name}</h4>
       <p className="text-xs text-zinc-500 mb-4">{lead.company}</p>
-      
+
       <div className="flex items-center justify-between text-xs pt-3 border-t border-zinc-50">
         <div className="flex items-center gap-1.5 text-zinc-700 font-medium bg-zinc-50 px-2 py-1 rounded-md">
           <DollarSign className="w-3 h-3 text-zinc-400" />
           <span>{lead.dealValue.toLocaleString()}</span>
         </div>
         {lead.nextFollowUp && (
-           <div className="flex items-center gap-1.5 text-zinc-500">
-             <Calendar className="w-3 h-3" />
-             <span>{new Date(lead.nextFollowUp).toLocaleDateString(undefined, {month: 'short', day: 'numeric'})}</span>
-           </div>
+          <div className="flex items-center gap-1.5 text-zinc-500">
+            <Calendar className="w-3 h-3" />
+            <span>{new Date(lead.nextFollowUp).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}</span>
+          </div>
         )}
       </div>
     </div>
@@ -118,10 +118,10 @@ function Column({ id, leads }: { id: string; leads: Lead[] }) {
           </span>
         </h3>
         <button className="text-zinc-400 hover:text-zinc-900 transition-colors">
-            <Plus className="w-4 h-4" />
+          <Plus className="w-4 h-4" />
         </button>
       </div>
-      
+
       <div ref={setNodeRef} className="bg-zinc-50/50 rounded-2xl p-2 flex-1 overflow-y-auto min-h-[100px]">
         <SortableContext items={leads.map((l) => l.id)} strategy={verticalListSortingStrategy}>
           <div className="space-y-3 pb-20">
@@ -154,7 +154,7 @@ export default function KanbanBoard() {
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
-    
+
     if (!over) return;
 
     const activeLeadId = active.id as string;
@@ -166,15 +166,15 @@ export default function KanbanBoard() {
 
     // If dropped on a column container
     if (STAGES.includes(overId as DealStage)) {
-        if (lead.stage !== overId) {
-            moveLeadStage(activeLeadId, overId as DealStage);
-        }
+      if (lead.stage !== overId) {
+        moveLeadStage(activeLeadId, overId as DealStage);
+      }
     } else {
-        // If dropped on another item, find that item's column
-        const overLead = leads.find(l => l.id === overId);
-        if (overLead && lead.stage !== overLead.stage) {
-            moveLeadStage(activeLeadId, overLead.stage);
-        }
+      // If dropped on another item, find that item's column
+      const overLead = leads.find(l => l.id === overId);
+      if (overLead && lead.stage !== overLead.stage) {
+        moveLeadStage(activeLeadId, overLead.stage);
+      }
     }
 
     setActiveId(null);
@@ -186,19 +186,19 @@ export default function KanbanBoard() {
     <div className="h-full flex flex-col">
       <div className="flex justify-between items-end mb-8">
         <div>
-            <h1 className="text-3xl font-bold text-zinc-900 tracking-tight">Pipeline</h1>
-            <p className="text-zinc-500 mt-1">Drag and drop deals to update their stage.</p>
+          <h1 className="text-3xl font-bold text-zinc-900 tracking-tight">Admission Pipeline</h1>
+          <p className="text-zinc-500 mt-1">Drag and drop student leads to update their admission stage.</p>
         </div>
         <div className="flex gap-3">
-            <button className="bg-white border border-zinc-200 text-zinc-700 px-4 py-2 rounded-xl text-sm font-medium hover:bg-zinc-50 transition-colors shadow-sm">
-                Filter
-            </button>
-            <button 
-                onClick={() => setAddLeadModalOpen(true)}
-                className="bg-zinc-900 text-white px-4 py-2 rounded-xl text-sm font-medium hover:bg-zinc-800 transition-colors shadow-lg shadow-zinc-900/20"
-            >
-                Add Deal
-            </button>
+          <button className="bg-white border border-zinc-200 text-zinc-700 px-4 py-2 rounded-xl text-sm font-medium hover:bg-zinc-50 transition-colors shadow-sm">
+            Filter
+          </button>
+          <button
+            onClick={() => setAddLeadModalOpen(true)}
+            className="bg-zinc-900 text-white px-4 py-2 rounded-xl text-sm font-medium hover:bg-zinc-800 transition-colors shadow-lg shadow-zinc-900/20"
+          >
+            Add Lead
+          </button>
         </div>
       </div>
 

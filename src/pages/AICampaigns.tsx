@@ -13,8 +13,8 @@ export default function AICampaigns() {
     <div className="space-y-8">
       <div className="flex justify-between items-end">
         <div>
-          <h1 className="text-3xl font-bold text-zinc-900 tracking-tight">AI Campaigns</h1>
-          <p className="text-zinc-500 mt-1">Manage and optimize your AI-driven marketing campaigns.</p>
+          <h1 className="text-3xl font-bold text-zinc-900 tracking-tight">AI Admission Campaigns</h1>
+          <p className="text-zinc-500 mt-1">Manage and optimize AI-driven student admission campaigns – Invertis University.</p>
         </div>
         <button className="bg-zinc-900 text-white px-4 py-2 rounded-xl text-sm font-medium hover:bg-zinc-800 transition-colors shadow-lg shadow-zinc-900/20 flex items-center gap-2">
           <Zap className="w-4 h-4" />
@@ -31,8 +31,8 @@ export default function AICampaigns() {
           <div>
             <h3 className="text-lg font-bold mb-1">AI Optimization Insight</h3>
             <p className="text-indigo-100 text-sm leading-relaxed max-w-2xl">
-              Your "Insta Lifestyle" campaign is outperforming others by 42%. 
-              AI recommends reallocating $1,200 from "LinkedIn B2B" to scale Instagram ads for maximum ROI.
+              Your "B.Tech Admissions 2025" campaign is outperforming others by 38%.
+              AI recommends reallocating ₹12,000 from "BCA / MCA Awareness" to scale Google Ads for B.Tech engineering leads and maximize enrollment conversions.
             </p>
             <button className="mt-4 px-4 py-2 bg-white text-indigo-600 rounded-lg text-sm font-semibold hover:bg-indigo-50 transition-colors">
               Apply Recommendation
@@ -50,9 +50,9 @@ export default function AICampaigns() {
                 <div className={clsx(
                   "p-2.5 rounded-xl",
                   campaign.platform === 'Google' ? "bg-blue-50 text-blue-600" :
-                  campaign.platform === 'Facebook' ? "bg-indigo-50 text-indigo-600" :
-                  campaign.platform === 'Instagram' ? "bg-rose-50 text-rose-600" :
-                  "bg-sky-50 text-sky-600"
+                    campaign.platform === 'Facebook' ? "bg-indigo-50 text-indigo-600" :
+                      campaign.platform === 'Instagram' ? "bg-rose-50 text-rose-600" :
+                        "bg-sky-50 text-sky-600"
                 )}>
                   <Target className="w-5 h-5" />
                 </div>
@@ -65,8 +65,8 @@ export default function AICampaigns() {
                 <span className={clsx(
                   "px-2.5 py-1 rounded-full text-xs font-bold border mb-1",
                   campaign.aiOptimizationScore > 90 ? "bg-emerald-50 text-emerald-700 border-emerald-200" :
-                  campaign.aiOptimizationScore > 70 ? "bg-amber-50 text-amber-700 border-amber-200" :
-                  "bg-rose-50 text-rose-700 border-rose-200"
+                    campaign.aiOptimizationScore > 70 ? "bg-amber-50 text-amber-700 border-amber-200" :
+                      "bg-rose-50 text-rose-700 border-rose-200"
                 )}>
                   AI Score: {campaign.aiOptimizationScore}
                 </span>
